@@ -1,45 +1,3 @@
-
-### Team Members
-Hasan Erisir,
-Keyrol Garcia Flacon,
-Andy Jaramillo,
-Jordan Wilson
-
-___
-
-### Project Details
-Our project is based on an 8-bit Mario animation that runs across the screen. This looped animation also comes with an 8-bit style mario theme tune. This is an fun and easy Arduino project to replicate as it does not require much knowledge about Arduino and its components.
-___
-### How the Breadboard works
-![breadboard image](https://sites.google.com/site/delseaphysics1/_/rsrc/1271270866717/Home/magnetism/series-and-parallel/building-circuits-1/Breadboard.png)
-___
-### Required Components
-| Components    | Amount        | Average Price  |
-| ------------- |:-------------:| -----:|
-| Arduino Uno|1|£21.00|
-| Piezo Buzzer|1|£3|
-| LCD 16x2 |1|£7.50|
-| Any colour LED |1|£0.09|
-| Potentiometer(optional)|1|£3|
-| Jumper Wires|22|£5.16 |
-### Wiring the Arduino
-![Arduino wiring](https://puu.sh/xSiOo/c8d5ac4185.png)
-**<u> Step by step</u>**
-1. Connect a wire from 5v into the positive bus.
-2. Connect a wire from GROUND into the negative bus.
-3. Place the LCD onto the breadboard. Make sure you allocate enough space for the other components as well.
-4. Connect a wire from the NEGATIVE bus on the breadboard onto the GROUND port on the LCD and then connect a wire from the POSITIVE bus on the breadboard onto the VCC port on the LCD.
-5. Place a potent adjuster onto the breadboard. Connect a cable from the POSITIVE and NEGATIVE bus into the correct ends. Then take a cable from the potent adjuster and insert it into the 3rd port on the LCD labelled "VO".
-6. Insert cables into RS RW and E on the LCD and place them accordingly into the ports on the Arduino 12, 11 and 7.
-7. Insert cables into DB4, DB5, DB6 and DB7 and place them into the ports 4, 5, 6 and 2 accordingly.
-8. Take the last ports on the LCD(15 and 16) and place them into positive and negative in the that order.
-9. Insert the Piezo buzzer onto the breadboard and take a cable from Port 3 on the Arduino into the positive leg on the Piezo. Take a cable from GROUND on the Arduino or the GROUND bus and place it onto the negative leg on the Piezo.
-10. For the last step, insert the LED onto the board and take a cable from PORT 13 into the positive leg of the Arduino. Lastly, take a cable from the GROUND bus and place it into the LED's negative leg.
-
-A **PDF** version of this tutorial can be found [here](http://puu.sh/xSlr2/14d0f2210f.pdf).
-___
-## Code
-```
 #include  <LiquidCrystal.h>
 #define NOTE_G3  196
 #define NOTE_GS3 208
@@ -101,11 +59,15 @@ ___
 
 #define melodyPin 49
 
-LiquidCrystal lcd(12, 11, 5, 4, 6, 2);
+LiquidCrystal lcd(12, 11, 5, 4, 6, 2); //my lcd pin setup, change it to yours
 int backLight = 18;
 
 int f=4;                  //set frames per second (fps)
 int s;
+
+// the following frams of the 8-bit Mario are made from a orginal 8-bit Mario as reference
+// left number is the frame right number is the position (mario xy)
+// (1 = top left 2 = bottem left 3 = top right 4 = bottem right)
 
 int melody[] = {
   NOTE_E7, NOTE_E7, 0, NOTE_E7,
@@ -160,7 +122,7 @@ int tempo[] = {
   12, 12, 12, 12,
   12, 12, 12, 12,
 };
-
+//Underworld melody
 int underworld_melody[] = {
   NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,
   NOTE_AS3, NOTE_AS4, 0,
@@ -667,7 +629,9 @@ lcd.clear();
 
   pinMode(3, OUTPUT);//buzzer
   pinMode(13, OUTPUT);//led indicator when singing a note
+  // led dal pin 3 al pin 7
   for (int i = 3; i <= 7; i++) pinMode(i, OUTPUT);
+  // bottone sul pinBottone
   pinMode(buttonPin, INPUT);
 s=1000/f;            //fps to ms
 
@@ -680,6 +644,7 @@ int activity = 0;
 void loop() 
 {
   buttonState = digitalRead(buttonPin);
+  //sing the tunes
   digitalWrite(acceso, HIGH);
   if (buttonState == HIGH) {
     if (thisSong == 2) {
@@ -709,9 +674,12 @@ void loop()
         digitalWrite(acceso, HIGH);
       }
     }
+    // to distinguish the notes, set a minimum time between them.
+    // the note's duration + 30% seems to work well:
     int pauseBetweenNotes = noteDuration * 1.30;
     delay(pauseBetweenNotes);
 
+    // stop the tone playing:
     buzz(melodyPin, 0, noteDuration);
     if (thisNote == size) {
       thisNote = 0;
@@ -1031,5 +999,3 @@ void buzz(int targetPin, long frequency, long length) {
   digitalWrite(13, LOW);
 
 }
-```
-Parts of the code is taken from these sources: [Theme song](http://www.princetronics.com/supermariothemesong/), [Animation](http://forum.arduino.cc/index.php?topic=203873.0)
