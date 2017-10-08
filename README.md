@@ -13,6 +13,8 @@ ___
 ### How the Breadboard works
 ![breadboard image](https://sites.google.com/site/delseaphysics1/_/rsrc/1271270866717/Home/magnetism/series-and-parallel/building-circuits-1/Breadboard.png)
 ___
+### Project Plan Gantt Chart
+![Gantt Chart](http://puu.sh/xST8u/539c59e25e.png)
 ### Required Components
 | Components    | Amount        | Average Price  |
 | ------------- |:-------------:| -----:|
@@ -22,6 +24,7 @@ ___
 | Any colour LED |1|£0.09|
 | Potentiometer(optional)|1|£3|
 | Jumper Wires|22|£5.16 |
+___
 ### Wiring the Arduino
 ![Arduino wiring](https://puu.sh/xSiOo/c8d5ac4185.png)
 **<u> Step by step</u>**
