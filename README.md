@@ -15,6 +15,7 @@ ___
 ___
 ### Project Plan Gantt Chart
 ![Gantt Chart](http://puu.sh/xST8u/539c59e25e.png)
+___
 ### Required Components
 | Components    | Amount        | Average Price  |
 | ------------- |:-------------:| -----:|
