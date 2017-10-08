@@ -25,6 +25,7 @@ ___
 | Any colour LED |1|£0.09|
 | Potentiometer(optional)|1|£3|
 | Jumper Wires|22|£5.16 |
+Total average price: 39.75
 ___
 ### Wiring the Arduino
 ![Arduino wiring](https://puu.sh/xSiOo/c8d5ac4185.png)
